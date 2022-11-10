@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.bertvanhecke.cryptocurrencyapp.screens.favorite.FavoriteFragment"
+        android:label="Favorites"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_userActivity"
+            app:destination="@id/userActivity" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedFragment"
+        android:label="Feed"
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_feedFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/coinDetailFragment"
+        android:name="com.bertvanhecke.cryptocurrencyapp.screens.coindetail.CoinDetailFragment"
+        android:label="@string/coin_details">
+        <action
+            android:id="@+id/action_coinDetailFragment_to_coinNewsFragment"
+            app:destination="@id/coinNewsFragment" />
+        <argument
+            android:name="coin"
+            app:argType="com.bertvanhecke.cryptocurrencyapp.models.Coin" />
+    </fragment>
+    <fragment
+        android:id="@+id/coinNewsFragment"
+        android:name="com.bertvanhecke.cryptocurrencyapp.screens.coinnews.CoinNewsFragment"
+        android:label="@string/coin_news"
+        tools:layout="@layout/fragment_coin_news" >
+        <argument
+            android:name="symbol"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.bertvanhecke.cryptocurrencyapp.screens.about.AboutFragment"
+        android:label="@string/about_the_app" />
+    <activity
+        android:id="@+id/userActivity"
+        android:name="com.bertvanhecke.cryptocurrencyapp.UserActivity"
+        android:label="activity_user"
+        tools:layout="@layout/activity_user" />
+</navigation>

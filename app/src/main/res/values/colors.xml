@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow_crayola">#F8E16C</color>
+    <color name="amber_sae_ece">#FF7D00</color>
+    <color name="flame">#EB5E28</color>
+    <color name="black">#0C120C</color>
+    <color name="white">#FFFAFF</color>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/drawable/bottom_nav_colors.xml" value="0.3165" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/activity_feed.xml" value="0.2" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/activity_user.xml" value="0.5" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/favorite_item.xml" value="0.39791666666666664" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/feed_item.xml" value="0.5599505562422744" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_about.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_coin_detail.xml" value="0.33" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_coin_news.xml" value="0.5595489781536294" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_favorite.xml" value="0.33" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_feed.xml" value="0.33" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_login.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_profile.xml" value="0.5416666666666666" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/fragment_register.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31354166666666666" />
+        <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/menu/drawer_nav_menu.xml" value="0.3125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
