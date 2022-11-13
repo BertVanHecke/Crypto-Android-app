@@ -28,5 +28,5 @@
     <string name="news_banner_image">News banner image</string>
     <string name="published_at">Published at</string>
     <string name="author">Author</string>
-    <string name="to_add_coins_to_your_personal_favorites_list_please_log_in">To add coins to your personal favorites list, please log in.</string>
+    <string name="to_add_coins_to_your_personal_favorites_list_please_log_in">To add coins to your personal favorites list,\nplease log in.</string>
 </resources>

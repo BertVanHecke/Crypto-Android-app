@@ -1,6 +1,5 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.feed
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bertvanhecke.cryptocurrencyapp.models.Coin

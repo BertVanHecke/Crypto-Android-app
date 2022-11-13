@@ -8,6 +8,7 @@
     </data>
 
     <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".screens.favorite.FavoriteFragment">
@@ -39,16 +40,18 @@
                 android:layout_marginBottom="24dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="vertical"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/favorite_list"
                 app:layout_constraintEnd_toEndOf="@+id/favorite_list"
                 app:layout_constraintStart_toStartOf="@+id/favorite_list"
-                app:layout_constraintTop_toTopOf="@+id/favorite_list">
+                app:layout_constraintTop_toTopOf="@+id/favorite_list"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/favorite_to_login"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:text="@string/to_add_coins_to_your_personal_favorites_list_please_log_in" />
 
                 <Button

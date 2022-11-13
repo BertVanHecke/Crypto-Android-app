@@ -43,7 +43,7 @@ class FeedAdapter(val clickListener: CoinListener): ListAdapter<Coin, FeedAdapte
 
 class FeedDiffCallback: DiffUtil.ItemCallback<Coin>(){
     override fun areItemsTheSame(oldItem: Coin, newItem: Coin): Boolean {
-        return oldItem.metrics.id == newItem.metrics.id
+        return oldItem.metrics?.id == newItem.metrics?.id
     }
 
     override fun areContentsTheSame(oldItem: Coin, newItem: Coin): Boolean {

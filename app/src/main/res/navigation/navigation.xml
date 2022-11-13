@@ -37,6 +37,9 @@
         <argument
             android:name="coin"
             app:argType="com.bertvanhecke.cryptocurrencyapp.models.Coin" />
+        <action
+            android:id="@+id/action_coinDetailFragment_to_userActivity"
+            app:destination="@id/userActivity" />
     </fragment>
     <fragment
         android:id="@+id/coinNewsFragment"
