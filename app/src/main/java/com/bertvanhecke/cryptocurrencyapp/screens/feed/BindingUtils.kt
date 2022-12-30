@@ -10,28 +10,28 @@ import java.util.*
 @BindingAdapter("id")
 fun TextView.setCoinID(item: Coin?) {
     item?.let {
-        text = item.metrics?.id
+        text = item.id
     }
 }
 
 @BindingAdapter("name")
 fun TextView.setCoinName(item: Coin?) {
     item?.let {
-        text = item.metrics?.name
+        text = item.name
     }
 }
 
 @BindingAdapter("symbol")
 fun TextView.setCoinSymbol(item: Coin?) {
     item?.let {
-        text = item.metrics?.symbol
+        text = item.symbol
     }
 }
 
 @BindingAdapter("absValue")
 fun TextView.setCoinAbsoluteValue(item: Coin?) {
     item?.let {
-        val format = item.metrics?.market_data?.price_btc.toString() + item.metrics?.symbol
+        val format = item.metrics?.market_data?.price_btc.toString() + item.symbol
         text = format
     }
 

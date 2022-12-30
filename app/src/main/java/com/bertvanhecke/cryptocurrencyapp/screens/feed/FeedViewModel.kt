@@ -2,38 +2,42 @@ package com.bertvanhecke.cryptocurrencyapp.screens.feed
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.bertvanhecke.cryptocurrencyapp.models.Coin
-import com.bertvanhecke.cryptocurrencyapp.models.MarketData
-import com.bertvanhecke.cryptocurrencyapp.models.Metrics
-import timber.log.Timber
+import com.bertvanhecke.cryptocurrencyapp.models.CoinResponse
+import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
+import com.bertvanhecke.cryptocurrencyapp.utils.Resource
+import kotlinx.coroutines.launch
+import retrofit2.Response
 
-class FeedViewModel(): ViewModel() {
+
+class FeedViewModel(val coinRepository: CoinRepository): ViewModel() {
 
     private val _navigateToCoinDetail = MutableLiveData<Coin?>()
+    val coins: MutableLiveData<Resource<CoinResponse>> = MutableLiveData()
+
+    init {
+        getAssets()
+    }
+
+    fun getAssets() = viewModelScope.launch {
+        coins.postValue(Resource.Loading())
+        val response = coinRepository.getAssets()
+        coins.postValue(handleCoinsResponse(response))
+    }
+
+    private fun handleCoinsResponse(response: Response<CoinResponse>): Resource<CoinResponse>{
+        if (response.isSuccessful){
+            response.body()?.let {
+                return Resource.Success(it)
+            }
+        }
+        return Resource.Error(response.message())
+    }
+
     val navigateToCoinDetail
         get() = _navigateToCoinDetail
 
-    fun <T : Any?> MutableLiveData<T>.default(initialValue: T) = apply { setValue(initialValue) }
-    val coins = MutableLiveData<List<Coin>>()
-        .default(
-            listOf(
-                Coin(Metrics("1", MarketData(1, 7184.79746667989), "Bitcoin", "bitcoin", "BTC")),
-                Coin(Metrics("2", MarketData(1, 7184.79746667989), "Bitcoin", "bitcoin", "BTC")),
-                Coin(Metrics("3", MarketData(1, 7184.79746667989), "Bitcoin", "bitcoin", "BTC")),
-                Coin(Metrics("4", MarketData(1, 7184.79746667989), "Bitcoin", "bitcoin", "BTC")),
-                Coin(Metrics("5", MarketData(1, 7184.79746667989), "Bitcoin", "bitcoin", "BTC"))
-            ))
-
-
-
-    init {
-        Timber.i("FeedViewModel created!")
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Timber.i("FeedViewModel destroyed!")
-    }
 
     fun onCoinClicked(coin: Coin){
         _navigateToCoinDetail.value = coin

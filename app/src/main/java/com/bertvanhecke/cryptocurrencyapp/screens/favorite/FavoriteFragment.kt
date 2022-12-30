@@ -1,40 +1,44 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.favorite
 
-import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentContainer
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.bertvanhecke.cryptocurrencyapp.MainActivity
-import com.bertvanhecke.cryptocurrencyapp.R
-import com.bertvanhecke.cryptocurrencyapp.SharedViewModel
-import com.bertvanhecke.cryptocurrencyapp.UserSingelton
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.bertvanhecke.cryptocurrencyapp.*
+import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentFavoriteBinding
 import com.bertvanhecke.cryptocurrencyapp.models.User
+import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
+import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedAdapter
+import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedViewModel
+import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
-import kotlin.reflect.typeOf
 
 class FavoriteFragment : Fragment() {
-    lateinit var binding: FragmentFavoriteBinding
-    private lateinit var viewModel: FavoriteViewModel
 
-    private val sharedViewModel: SharedViewModel by activityViewModels()
+    lateinit var binding: FragmentFavoriteBinding
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentFavoriteBinding.inflate(inflater)
 
+        binding = FragmentFavoriteBinding.inflate(inflater)
         val user = UserSingelton.instance().user
-        checkUser(user)
+
+        val coinRepository = CoinRepository(CryptoDatabase(requireActivity()))
+        val favoriteViewModelFactory = FavoriteViewModelFactory(coinRepository)
+
+        checkUser(user, favoriteViewModelFactory)
 
         return binding.root
     }
@@ -50,53 +54,81 @@ class FavoriteFragment : Fragment() {
             fragTrans.commit()
         }
         val user = UserSingelton.instance().user
-        checkUser(user)
+        val coinRepository = CoinRepository(CryptoDatabase(requireActivity()))
+        val favoriteViewModelFactory = FavoriteViewModelFactory(coinRepository)
+        checkUser(user, favoriteViewModelFactory)
     }
 
-    private fun checkUser(user: User?){
+    private fun checkUser(user: User?, vmf: FavoriteViewModelFactory){
         if (user != null) {
-            handleUser(binding)
+            handleUser(user, vmf)
         } else {
-            handleNoUser(binding)
+            handleNoUser()
         }
     }
 
 
-    private fun handleUser(binding: FragmentFavoriteBinding){
-        //TODO werkt niet?
+    private fun handleUser(user: User, vmf: FavoriteViewModelFactory){
         binding.loginView.visibility = View.INVISIBLE
         binding.favoriteToLogin.visibility = View.INVISIBLE
         binding.favoriteToLoginButton.visibility = View.INVISIBLE
         binding.favoriteList.visibility = View.VISIBLE
 
+        favoriteViewModel = ViewModelProvider(this, vmf).get(FavoriteViewModel::class.java)
 
-        viewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
 
         val adapter = FavoriteAdapter(CoinListener { coin ->
-            viewModel.onCoinClicked(coin)
+            favoriteViewModel.onCoinClicked(coin)
         })
 
         binding.favoriteList.adapter = adapter
 
-        sharedViewModel.favorites.observe(viewLifecycleOwner, Observer {
-            Timber.i(it.size.toString())
-            it?.let {
-                adapter.submitList(it)
-            }
+        favoriteViewModel.getFavoriteCoins(user.id!!).observe(viewLifecycleOwner, Observer { favoriteCoins ->
+            adapter.submitList(favoriteCoins)
         })
 
-        viewModel.navigateToCoinDetail.observe(viewLifecycleOwner, Observer { coin ->
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val coin = adapter.currentList[position]
+                favoriteViewModel.deleteCoin(coin)
+                view?.let {
+                    Snackbar.make(it, "Successfully deleted coin", Snackbar.LENGTH_LONG).apply {
+                        setAction("Undo") {
+                            favoriteViewModel.saveCoin(coin, user.id!!)
+                        }
+                        show()
+                    }
+                }
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelperCallback).apply {
+            attachToRecyclerView(binding.favoriteList)
+        }
+
+        favoriteViewModel.navigateToCoinDetail.observe(viewLifecycleOwner, Observer { coin ->
             coin?.let {
                 this.findNavController().navigate(
                     FavoriteFragmentDirections
                         .actionFavoriteFragmentToCoinDetailFragment(coin))
-                viewModel.onCoinDetailNavigated()
+                favoriteViewModel.onCoinDetailNavigated()
             }
         })
     }
 
-    private fun handleNoUser(binding: FragmentFavoriteBinding) {
-        //TODO werkt niet?
+    private fun handleNoUser() {
         binding.favoriteList.visibility = View.INVISIBLE
         binding.loginView.visibility = View.VISIBLE
         binding.favoriteToLogin.visibility = View.VISIBLE

@@ -1,30 +1,24 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.login
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.bertvanhecke.cryptocurrencyapp.models.User
-import com.bertvanhecke.cryptocurrencyapp.utils.MockupUser
+import com.bertvanhecke.cryptocurrencyapp.repository.UserRepository
+import kotlinx.coroutines.launch
 
-class LoginModel: ViewModel() {
+class LoginViewModel(val userRepository: UserRepository): ViewModel() {
     var user = MutableLiveData<User?>()
     var loginError = MutableLiveData<String?>()
     var errorPassword = MutableLiveData<String?>()
+    var errorLogin = MutableLiveData<String?>()
 
     var userName = MutableLiveData<String>()
     var password = MutableLiveData<String>()
-    private var mockupUser = MutableLiveData<MockupUser>()
 
     var navigateBack = MutableLiveData<Boolean>()
 
     init {
-        mockupUser.value = MockupUser()
-        mockupUser.value?.error?.observeForever(Observer {
-            //it?.let {
-
-            loginError.value = it
-            //}
-        })
         navigateBack.value = false
         userName.value=""
         password.value=""
@@ -44,7 +38,15 @@ class LoginModel: ViewModel() {
         }
 
         if (errorPassword.value.isNullOrBlank() && loginError.value.isNullOrBlank()) {
-            user.value = mockupUser.value?.getUser(userName.value, password.value)
+            viewModelScope.launch {
+                val u = userRepository.checkUsernameAndPassword(userName.value!!, password.value!!)
+                if(u == null){
+                    errorLogin.value = "Username or password is not correct, try again."
+                }else {
+                    errorLogin.value = null
+                    user.value = u
+                }
+            }
         }
     }
 

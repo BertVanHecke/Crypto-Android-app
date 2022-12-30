@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/21---22-eindopdracht-ao-bertvanheckee/app/src/main/res/layout/feed_item.xml" value="0.28125" />
+        <entry key="..\:/21---22-eindopdracht-ao-bertvanheckee/app/src/main/res/layout/fragment_coin_detail.xml" value="0.33" />
+        <entry key="..\:/21---22-eindopdracht-ao-bertvanheckee/app/src/main/res/layout/fragment_coin_news.xml" value="0.18342391304347827" />
+        <entry key="..\:/21---22-eindopdracht-ao-bertvanheckee/app/src/main/res/layout/fragment_login.xml" value="0.23796296296296296" />
+        <entry key="..\:/21---22-eindopdracht-ao-bertvanheckee/app/src/main/res/layout/fragment_profile.xml" value="0.18342391304347827" />
+        <entry key="..\:/21---22-eindopdracht-ao-bertvanheckee/app/src/main/res/layout/fragment_register.xml" value="0.1524822695035461" />
         <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/drawable/bottom_nav_colors.xml" value="0.3165" />
         <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/activity_feed.xml" value="0.2" />
         <entry key="..\:/Users/Bertv/OneDrive - Hogeschool VIVES/Jaar 3/AD/cryptoApp/app/src/main/res/layout/activity_main.xml" value="0.33" />

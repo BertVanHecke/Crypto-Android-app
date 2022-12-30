@@ -3,6 +3,12 @@ buildscript {
     ext {
         navigationVersion = "2.5.2"
     }
+    repositories {
+        maven {
+            url "https://maven.google.com"
+        }
+        mavenCentral()
+    }
 }
 
 plugins {

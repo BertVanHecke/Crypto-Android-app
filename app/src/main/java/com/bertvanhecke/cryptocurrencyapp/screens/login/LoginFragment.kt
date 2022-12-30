@@ -7,17 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.findNavController
-import com.bertvanhecke.cryptocurrencyapp.R
-import com.bertvanhecke.cryptocurrencyapp.UserActivity
 import com.bertvanhecke.cryptocurrencyapp.UserSingelton
+import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentLoginBinding
+import com.bertvanhecke.cryptocurrencyapp.repository.UserRepository
+import com.bertvanhecke.cryptocurrencyapp.screens.register.RegisterViewModel
+import com.bertvanhecke.cryptocurrencyapp.screens.register.RegisterViewModelFactory
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
-    lateinit var viewModel: LoginModel
+    lateinit var loginViewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,40 +27,42 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater)
 
+        val userRepository = UserRepository(CryptoDatabase(requireNotNull(this.activity)))
+        val loginViewModelFactory = LoginViewModelFactory(userRepository)
+        loginViewModel = ViewModelProvider(this, loginViewModelFactory).get(LoginViewModel::class.java)
+
         binding.toRegisterButton.setOnClickListener { view ->
             view.findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
 
-        viewModel = ViewModelProvider(this).get(LoginModel::class.java)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-        binding.viewModel = viewModel
+        binding.loginViewModel = loginViewModel
 
-        viewModel.loginError.observe(viewLifecycleOwner, Observer {
+        loginViewModel.loginError.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.username.error = it
             }
         })
 
-        viewModel.errorPassword.observe(viewLifecycleOwner, Observer {
+        loginViewModel.errorPassword.observe(viewLifecycleOwner, Observer {
             it?.let {
                 binding.password.error = it
             }
         })
 
-        viewModel.user.observe(viewLifecycleOwner, Observer {
+        loginViewModel.errorLogin.observe(viewLifecycleOwner, Observer {
             it?.let {
-                //(activity as UserActivity).setCurrentUser(it)
+                binding.username.error = it
+            }
+        })
+
+        loginViewModel.user.observe(viewLifecycleOwner, Observer {
+            it?.let {
                 UserSingelton.instance().user = it
                 requireView().findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToProfileFragment())
             }
         })
-
-/*        viewModel.navigateBack.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                (activity as UserActivity).closeActivity()
-            }
-
-        })*/
 
         return binding.root
     }
