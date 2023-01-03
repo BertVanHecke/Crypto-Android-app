@@ -1,12 +1,11 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.feed
 
-import android.content.Context
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
@@ -17,16 +16,16 @@ import timber.log.Timber
 
 class FeedFragment : Fragment() {
     lateinit var binding: FragmentFeedBinding
-    lateinit var feedViewModel: FeedViewModel
+    private lateinit var feedViewModel: FeedViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFeedBinding.inflate(inflater)
         val coinRepository = CoinRepository(CryptoDatabase(requireActivity()))
         val feedViewModelFactory = FeedViewModelFactory(coinRepository)
-        feedViewModel = ViewModelProvider(this, feedViewModelFactory).get(FeedViewModel::class.java)
+        feedViewModel = ViewModelProvider(this, feedViewModelFactory)[FeedViewModel::class.java]
 
 
         val adapter = FeedAdapter(CoinListener { coin ->
@@ -35,34 +34,41 @@ class FeedFragment : Fragment() {
 
         binding.feedList.adapter = adapter
 
-        feedViewModel.coins.observe(viewLifecycleOwner, Observer { response ->
-            when(response) {
+        feedViewModel.coins.observe(viewLifecycleOwner) { response ->
+            when (response) {
                 is Resource.Success -> {
-                    // Hide progressbar
+                    binding.progressBar.visibility = View.GONE
                     response.data?.let { coinResponse ->
                         adapter.submitList(coinResponse.data)
                     }
                 }
                 is Resource.Error -> {
-                    //hide progressbar
+                    binding.progressBar.visibility = View.GONE
                     response.message?.let { message ->
-                        Timber.i("An error occured: $message")
+                        Timber.i("An error occurred: $message")
+                        val builder: AlertDialog.Builder? = activity?.let {
+                            AlertDialog.Builder(it)
+                        }
+                        builder?.setMessage(message)?.setTitle("An error occurred")
+
+                        builder?.create()
                     }
                 }
                 is Resource.Loading -> {
-                    // show progressbar
+                    binding.progressBar.visibility = View.VISIBLE
                 }
             }
-        })
+        }
 
-        feedViewModel.navigateToCoinDetail.observe(viewLifecycleOwner, Observer { coin ->
+        feedViewModel.navigateToCoinDetail.observe(viewLifecycleOwner) { coin ->
             coin?.let {
                 this.findNavController().navigate(
                     FeedFragmentDirections
-                        .actionFeedFragmentToCoinDetailFragment(coin))
+                        .actionFeedFragmentToCoinDetailFragment(coin)
+                )
                 feedViewModel.onCoinDetailNavigated()
             }
-        })
+        }
 
 
 

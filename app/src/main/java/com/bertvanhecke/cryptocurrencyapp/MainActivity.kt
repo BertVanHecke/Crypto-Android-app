@@ -34,11 +34,15 @@ class MainActivity : AppCompatActivity() {
 
         Timber.plant(Timber.DebugTree())
 
+
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         val drawerLayout = binding.drawerLayout
         val bottomNavigation = binding.bottomNavigationView
         val navigationView = binding.navigationView
+
+
 
         //Bottom tab navigator
         navController = findNavController(R.id.myNavHostFragment)

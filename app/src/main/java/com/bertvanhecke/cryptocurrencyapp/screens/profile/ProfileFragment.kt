@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
 import androidx.navigation.NavController
@@ -35,6 +36,8 @@ class ProfileFragment : Fragment() {
         profileModel = ViewModelProvider(this, profileModelFactory).get(ProfileModel::class.java)
 
         binding.user = profileModel
+
+        (activity as AppCompatActivity).supportActionBar?.title = user.userName
 
         binding.lifecycleOwner = this
 

@@ -19,6 +19,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/black"
             tools:context=".UserActivity">
 
             <TextView
@@ -27,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="@string/app_name"
+                android:textColor="@color/white"
                 android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="@string/register_now"
+                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_title" />
@@ -51,10 +54,10 @@
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="@string/username"
-                android:text="@={registerViewModel.userName}"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
+                android:text="@={registerViewModel.userName}"
                 android:textColorHint="#757575"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,10 +72,11 @@
                 android:layout_marginEnd="32dp"
                 android:ems="10"
                 android:hint="@string/password"
-                android:text="@={registerViewModel.password}"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
+                android:text="@={registerViewModel.password}"
+                android:textColorHint="#757575"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,11 +89,13 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:onClick="@{()-> registerViewModel.btnRegisterClicked()}"
                 android:text="@string/register"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/yellow_crayola"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/password_register"
-                android:onClick="@{()-> registerViewModel.btnRegisterClicked()}"
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
             <TextView
@@ -99,6 +105,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/already_have_an_account"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_button" />
@@ -111,7 +118,8 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/log_in"
-                app:backgroundTint="#FF9800"
+                android:textColor="@color/black"
+                app:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@+id/already_have_an_account_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/already_have_an_account_label"

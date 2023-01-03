@@ -1,18 +1,23 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.coindetail
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.bertvanhecke.cryptocurrencyapp.R
 import com.bertvanhecke.cryptocurrencyapp.UserSingelton
 import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentCoinDetailBinding
 import com.bertvanhecke.cryptocurrencyapp.models.User
 import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import java.text.NumberFormat
 import java.util.*
@@ -25,14 +30,24 @@ class CoinDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentCoinDetailBinding.inflate(inflater)
         val user = UserSingelton.instance().user
         val coinRepository = CoinRepository(CryptoDatabase(requireNotNull(this.activity)))
         val coinDetailViewModelFactory = CoinDetailViewModelFactory(CoinDetailFragmentArgs.fromBundle(requireArguments()).coin, user, coinRepository)
-        coinDetailViewModel = ViewModelProvider(this, coinDetailViewModelFactory).get(CoinDetailViewModel::class.java)
+        coinDetailViewModel = ViewModelProvider(this, coinDetailViewModelFactory)[CoinDetailViewModel::class.java]
 
         val coin = coinDetailViewModel.coin
+
+        //Change actionbar title
+        (activity as AppCompatActivity).supportActionBar?.title = coin.name
+
+        //Change favorite button to yellow
+        context?.let {
+            ContextCompat.getColor(it, R.color.yellow_crayola)
+        }?.let {
+            binding.favoriteCoinButton.setColorFilter(it, PorterDuff.Mode.MULTIPLY)
+        }
 
         binding.coin = coin
 
@@ -45,6 +60,9 @@ class CoinDetailFragment : Fragment() {
                 view?.findNavController()?.navigate(CoinDetailFragmentDirections.actionCoinDetailFragmentToUserActivity())
             } else {
                 coinDetailViewModel.saveCoin(CoinDetailFragmentArgs.fromBundle(requireArguments()).coin, user.id!!)
+                view?.let {
+                    Snackbar.make(it, "Successfully added coin to favorites.", Snackbar.LENGTH_LONG).show()
+                }
             }
         }
 

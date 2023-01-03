@@ -8,5 +8,6 @@ data class News(
     val references: List<Reference>,
     val tags: List<String>,
     val title: String,
-    val previewImage: String
+    val previewImage: String,
+    val pdfUrl: String?
 )

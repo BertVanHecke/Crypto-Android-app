@@ -6,7 +6,7 @@ import com.bertvanhecke.cryptocurrencyapp.models.User
 import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
 import kotlinx.coroutines.launch
 
-class CoinDetailViewModel(coin: Coin, user: User?, val coinRepository: CoinRepository) :
+class CoinDetailViewModel(coin: Coin, val coinRepository: CoinRepository) :
     ViewModel() {
 
     val coin = coin

@@ -10,7 +10,7 @@ import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
 class CoinDetailViewModelFactory(private val coin: Coin, private val user: User?, val coinRepository: CoinRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CoinDetailViewModel::class.java)) {
-            return CoinDetailViewModel(coin, user, coinRepository) as T
+            return CoinDetailViewModel(coin, coinRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

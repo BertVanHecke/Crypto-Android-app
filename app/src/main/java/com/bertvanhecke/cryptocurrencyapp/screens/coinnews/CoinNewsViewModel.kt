@@ -1,5 +1,7 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.coinnews
 
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -24,7 +26,7 @@ class CoinNewsViewModel(val coinRepository: CoinRepository, symbol: String):View
         getAssetNews(symbol)
     }
 
-    fun getAssetNews(symbol: String) = viewModelScope.launch {
+    private fun getAssetNews(symbol: String) = viewModelScope.launch {
         coinNews.postValue(Resource.Loading())
         val response = coinRepository.getAssetNews(symbol)
         coinNews.postValue(handleCoinNewsResponse(response))
@@ -38,6 +40,19 @@ class CoinNewsViewModel(val coinRepository: CoinRepository, symbol: String):View
             }
         }
         return Resource.Error(response.message())
+    }
+
+    fun sharePDFNews(link: String?): Intent{
+        val shareIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            if(link == null){
+                putExtra(Intent.EXTRA_TEXT, "No PDF Available")
+            } else {
+                putExtra(Intent.EXTRA_TEXT, link)
+            }
+            type = "text/plain"
+        }
+        return shareIntent
     }
 
 }
