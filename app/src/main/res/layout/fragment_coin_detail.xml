@@ -19,6 +19,7 @@
             android:layout_height="match_parent"
             android:background="@color/black">
 
+
             <TextView
                 android:id="@+id/coin_price_abs_label"
                 android:layout_width="wrap_content"
@@ -26,6 +27,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/coin_price_abs"
                 android:textColor="@color/white"
+                android:textSize="24sp"
                 android:textStyle="italic"
                 app:absValue="@{coin}"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,173 +41,13 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/coin_price_usd"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="34sp"
                 android:textStyle="bold|italic"
                 app:USDValue="@{coin}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/coin_volume_last_24_hours"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="coin_volume_last_24_hours"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coin_price_abs_label"
-                app:volumeLast24Hours="@{coin}" />
-
-            <TextView
-                android:id="@+id/coin_real_volume_last_24_hours"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="coin_real_volume_last_24_hours"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coin_volume_last_24_hours"
-                app:realVolumeLast24Hours="@{coin}" />
-
-
-            <TextView
-                android:id="@+id/percent_change_usd_last_1_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="percent_change_usd_last_1_hour"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coin_real_volume_last_24_hours"
-                app:percentChangeUSDLast1Hour="@{coin}" />
-
-            <TextView
-                android:id="@+id/percent_change_btc_last_1_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="percent_change_btc_last_1_hour"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/percent_change_usd_last_1_hour"
-                app:percentChangeBTCLast1Hour="@{coin}" />
-
-
-            <TextView
-                android:id="@+id/percent_change_usd_last_24_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="percent_change_usd_last_24_hour"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/percent_change_btc_last_1_hour"
-                app:percentChangeUSDLast24Hour="@{coin}" />
-
-            <TextView
-                android:id="@+id/percent_change_btc_last_24_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="percent_change_btc_last_24_hour"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/percent_change_usd_last_24_hour"
-                app:percentChangeBTCLast24Hour="@{coin}" />
-
-            <TextView
-                android:id="@+id/open"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="open"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/percent_change_btc_last_24_hour"
-                app:open="@{coin}" />
-
-            <TextView
-                android:id="@+id/high"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="high"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:high="@{coin}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/open" />
-
-            <TextView
-                android:id="@+id/low"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="low"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/high"
-                app:low="@{coin}" />
-
-            <TextView
-                android:id="@+id/close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="close"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:close="@{coin}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/low" />
-
-            <TextView
-                android:id="@+id/volume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="volume"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/close"
-                app:volume="@{coin}" />
 
             <ImageView
                 android:id="@+id/favorite_coin_button"
@@ -215,7 +57,8 @@
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/coin_news_button"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_baseline_favorite_24" />
+                app:srcCompat="@drawable/ic_baseline_favorite_24"
+                tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
             <Button
                 android:id="@+id/coin_news_button"
@@ -232,6 +75,395 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/coin_price_usd" />
+
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coin_price_abs_label" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/favorite_coin_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/coin_price_abs_label"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/title_volume"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Last 24 Hours"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TableLayout
+                        android:id="@+id/tableLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_volume">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="Volume"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_column="0"
+                                app:layout_row="0" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="Real Volume"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                app:layout_column="0"
+                                app:layout_row="0" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/coin_volume_last_24_hours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="cv"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_column="0"
+                                app:layout_row="0"
+                                app:volumeLast24Hours="@{coin}" />
+
+                            <TextView
+                                android:id="@+id/coin_real_volume_last_24_hours"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="crv"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_column="0"
+                                app:layout_row="0"
+                                app:realVolumeLast24Hours="@{coin}" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TextView
+                        android:id="@+id/title_change_1_hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Last Hour"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+                    <TableLayout
+                        android:id="@+id/tableLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_change_1_hour">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/change_btc_24"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="10dp"
+                                android:text="Change BTC"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/change_usd_24"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="10dp"
+                                android:text="Change USD"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/percent_change_btc_last_1_hour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="pc"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_column="0"
+                                app:layout_row="0"
+                                app:percentChangeBTCLast1Hour="@{coin}" />
+
+                            <TextView
+                                android:id="@+id/percent_change_usd_last_1_hour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="pc"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_column="3"
+                                app:layout_row="0"
+                                app:percentChangeUSDLast1Hour="@{coin}" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TextView
+                        android:id="@+id/title_change_24_hour"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:text="Last 24 Hours"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+                    <TableLayout
+                        android:id="@+id/tableLayout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_change_24_hour">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/change_btc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="Change BTC"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/change_usd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:text="Change USD"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/percent_change_btc_last_24_hour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="pc"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_column="0"
+                                app:layout_row="0"
+                                app:percentChangeBTCLast24Hour="@{coin}" />
+
+                            <TextView
+                                android:id="@+id/percent_change_usd_last_24_hour"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:padding="10dp"
+                                android:text="pc"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:percentChangeUSDLast24Hour="@{coin}" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                    <TextView
+                        android:id="@+id/title_OHLCV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="OHLCV"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tableLayout4" />
+
+                    <TextView
+                        android:id="@+id/low"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:padding="5dp"
+                        android:text="low"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintEnd_toStartOf="@+id/close"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/high"
+                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
+                        app:low="@{coin}" />
+
+                    <TextView
+                        android:id="@+id/volume"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="252dp"
+                        android:layout_marginTop="16dp"
+                        android:padding="5dp"
+                        android:text="volume"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold|italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/close"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
+                        app:volume="@{coin}" />
+
+                    <TextView
+                        android:id="@+id/high"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:padding="5dp"
+                        android:text="high"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold|italic"
+                        app:high="@{coin}"
+                        app:layout_column="2"
+                        app:layout_constraintEnd_toStartOf="@+id/low"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/open"
+                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
+                        app:layout_row="0" />
+
+                    <TextView
+                        android:id="@+id/open"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:padding="5dp"
+                        android:text="open"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold|italic"
+                        app:layout_column="4"
+                        app:layout_constraintEnd_toStartOf="@+id/high"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
+                        app:layout_row="0"
+                        app:open="@{coin}" />
+
+                    <TextView
+                        android:id="@+id/close"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="16dp"
+                        android:padding="5dp"
+                        android:text="close"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold|italic"
+                        app:close="@{coin}"
+                        app:layout_constraintEnd_toStartOf="@+id/volume"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/low"
+                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

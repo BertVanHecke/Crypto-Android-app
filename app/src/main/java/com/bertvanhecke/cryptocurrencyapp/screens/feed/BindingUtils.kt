@@ -2,7 +2,6 @@ package com.bertvanhecke.cryptocurrencyapp.screens.feed
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.bertvanhecke.cryptocurrencyapp.R
 import com.bertvanhecke.cryptocurrencyapp.models.Coin
 import java.text.NumberFormat
 import java.util.*
@@ -43,14 +42,14 @@ fun TextView.setCoinUSDValue(item: Coin?) {
 @BindingAdapter("volumeLast24Hours")
 fun TextView.setVolumeLast24Hours(item: Coin?) {
     item?.let {
-        text = item.metrics.market_data.volume_last_24_hours.toString()
+        text = item.metrics.market_data.volume_last_24_hours.toInt().toString()
     }
 }
 
 @BindingAdapter("realVolumeLast24Hours")
 fun TextView.setRealVolumeLast24Hours(item: Coin?) {
     item?.let {
-        text = item.metrics.market_data.real_volume_last_24_hours.toString()
+        text = item.metrics.market_data.real_volume_last_24_hours.toInt().toString()
     }
 }
 
@@ -58,7 +57,7 @@ fun TextView.setRealVolumeLast24Hours(item: Coin?) {
 fun TextView.setPercentChangeUSDLast1Hour(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.percent_change_usd_last_1_hour == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
             val format = NumberFormat.getPercentInstance().format(item.metrics.market_data.percent_change_usd_last_1_hour)
             format.toString()
@@ -69,7 +68,7 @@ fun TextView.setPercentChangeUSDLast1Hour(item: Coin?) {
 fun TextView.setPercentChangeBTCLast1Hour(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.percent_change_btc_last_1_hour == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
             val format = NumberFormat.getPercentInstance().format(item.metrics.market_data.percent_change_btc_last_1_hour)
             format.toString()
@@ -82,7 +81,7 @@ fun TextView.setPercentChangeBTCLast1Hour(item: Coin?) {
 fun TextView.setPercentChangeUSDLast24Hour(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.percent_change_usd_last_24_hours == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
             val format = NumberFormat.getPercentInstance().format(item.metrics.market_data.percent_change_usd_last_24_hours)
             format.toString()
@@ -94,7 +93,7 @@ fun TextView.setPercentChangeUSDLast24Hour(item: Coin?) {
 fun TextView.setPercentChangeBTCLast24Hour(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.percent_change_btc_last_24_hours == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
             val format = NumberFormat.getPercentInstance().format(item.metrics.market_data.percent_change_btc_last_24_hours)
             format.toString()
@@ -106,10 +105,9 @@ fun TextView.setPercentChangeBTCLast24Hour(item: Coin?) {
 fun TextView.setOpen(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.ohlcv_last_1_hour?.open == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
-            item.metrics.market_data.ohlcv_last_1_hour.open.toString()
-
+            String.format("%.2f", item.metrics.market_data.ohlcv_last_1_hour.open)
         }
     }
 }
@@ -118,9 +116,9 @@ fun TextView.setOpen(item: Coin?) {
 fun TextView.setHigh(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.ohlcv_last_1_hour?.high == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
-            item.metrics.market_data.ohlcv_last_1_hour.high.toString()
+            String.format("%.2f", item.metrics.market_data.ohlcv_last_1_hour.high)
 
         }
     }
@@ -130,10 +128,9 @@ fun TextView.setHigh(item: Coin?) {
 fun TextView.setLow(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.ohlcv_last_1_hour?.low == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
-            item.metrics.market_data.ohlcv_last_1_hour.low.toString()
-
+            String.format("%.2f", item.metrics.market_data.ohlcv_last_1_hour.low)
         }
     }
 }
@@ -142,9 +139,9 @@ fun TextView.setLow(item: Coin?) {
 fun TextView.setClose(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.ohlcv_last_1_hour?.close == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
-            item.metrics.market_data.ohlcv_last_1_hour.close.toString()
+            String.format("%.2f", item.metrics.market_data.ohlcv_last_1_hour.close)
 
         }
     }
@@ -154,9 +151,9 @@ fun TextView.setClose(item: Coin?) {
 fun TextView.setVolume(item: Coin?) {
     item?.let {
         text = if(item.metrics.market_data.ohlcv_last_1_hour?.volume == null){
-            R.string.nodata.toString()
+            "No data"
         } else {
-            item.metrics.market_data.ohlcv_last_1_hour.volume.toString()
+            String.format("%.2f", item.metrics.market_data.ohlcv_last_1_hour.volume)
 
         }
     }
