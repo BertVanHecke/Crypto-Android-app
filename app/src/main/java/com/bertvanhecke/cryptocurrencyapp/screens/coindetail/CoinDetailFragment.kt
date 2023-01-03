@@ -8,19 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bertvanhecke.cryptocurrencyapp.R
 import com.bertvanhecke.cryptocurrencyapp.UserSingelton
 import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentCoinDetailBinding
-import com.bertvanhecke.cryptocurrencyapp.models.User
 import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
 import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
-import java.text.NumberFormat
-import java.util.*
+
 
 class CoinDetailFragment : Fragment() {
     lateinit var binding: FragmentCoinDetailBinding
@@ -29,12 +25,13 @@ class CoinDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
 
         binding = FragmentCoinDetailBinding.inflate(inflater)
         val user = UserSingelton.instance().user
         val coinRepository = CoinRepository(CryptoDatabase(requireNotNull(this.activity)))
-        val coinDetailViewModelFactory = CoinDetailViewModelFactory(CoinDetailFragmentArgs.fromBundle(requireArguments()).coin, user, coinRepository)
+        val coinDetailViewModelFactory = CoinDetailViewModelFactory(CoinDetailFragmentArgs.fromBundle(requireArguments()).coin, coinRepository)
         coinDetailViewModel = ViewModelProvider(this, coinDetailViewModelFactory)[CoinDetailViewModel::class.java]
 
         val coin = coinDetailViewModel.coin

@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface MessariApi {
     @GET("v2/assets")
-    suspend fun getAsssets(): Response<CoinResponse>
+    suspend fun getAssets(): Response<CoinResponse>
 
     @GET("v1/news/{symbol}")
     suspend fun getAssetNews(@Path(value = "symbol") symbol: String): Response<NewsResponse>

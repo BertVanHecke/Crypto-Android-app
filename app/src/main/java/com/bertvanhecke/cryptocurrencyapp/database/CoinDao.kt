@@ -10,6 +10,7 @@ interface CoinDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertCoin(coin: Coin)
 
+    //Gets all coins to display in the favorite adapter.
     @Query("SELECT * FROM coins WHERE owner == :id")
     fun getAllCoins(id: Int): LiveData<List<Coin>>
 

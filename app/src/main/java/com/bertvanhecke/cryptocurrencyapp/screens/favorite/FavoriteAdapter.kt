@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bertvanhecke.cryptocurrencyapp.databinding.FavoriteItemBinding
 import com.bertvanhecke.cryptocurrencyapp.models.Coin
 
-class FavoriteAdapter(val clickListener: CoinListener): ListAdapter<Coin, FavoriteAdapter.ViewHolder>(FeedDiffCallback()) {
+class FavoriteAdapter(private val clickListener: CoinListener): ListAdapter<Coin, FavoriteAdapter.ViewHolder>(FeedDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)

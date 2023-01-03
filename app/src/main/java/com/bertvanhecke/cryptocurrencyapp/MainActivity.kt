@@ -1,25 +1,16 @@
 package com.bertvanhecke.cryptocurrencyapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.databinding.ActivityMainBinding
-import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {

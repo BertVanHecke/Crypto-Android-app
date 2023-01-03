@@ -1,10 +1,9 @@
 package com.bertvanhecke.cryptocurrencyapp.repository
 
-import androidx.lifecycle.LiveData
 import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.models.User
 
-class UserRepository(val db: CryptoDatabase) {
+class UserRepository(private val db: CryptoDatabase) {
 
     suspend fun insertUser(user: User): Long = db.getUserDao().insertUser(user)
 

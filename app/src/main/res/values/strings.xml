@@ -31,4 +31,5 @@
     <string name="to_add_coins_to_your_personal_favorites_list_please_log_in">To add coins to your personal favorites list,\nplease log in.</string>
     <string name="about">Our cryptocurrency mobile application is a sleek and easy-to-use platform that allows you to store your favorite digital assets. With support for multiple cryptocurrencies, you can manage all of your investments in one place. The app features live market data and a secure wallet to store your assets. Whether you\'re a seasoned investor or new to the world of cryptocurrency, our app has something for everyone. In addition to its core features, you can view your asset holdings in real-time. We also offer an additional educational resource, articles, to help you deepen your understanding of cryptocurrency and make informed investment decisions. It\'s never been easier to build a diversified portfolio and manage your assets on the go.</string>
     <string name="share">Share</string>
+    <string name="nodata">No data</string>
 </resources>

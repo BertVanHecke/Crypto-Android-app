@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,9 +14,6 @@ import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentFavoriteBinding
 import com.bertvanhecke.cryptocurrencyapp.models.User
 import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
-import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedAdapter
-import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedViewModel
-import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
@@ -30,7 +25,7 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentFavoriteBinding.inflate(inflater)
         val user = UserSingelton.instance().user
@@ -59,22 +54,22 @@ class FavoriteFragment : Fragment() {
         checkUser(user, favoriteViewModelFactory)
     }
 
-    private fun checkUser(user: User?, vmf: FavoriteViewModelFactory){
+    private fun checkUser(user: User?, favoriteViewModelFactory: FavoriteViewModelFactory){
         if (user != null) {
-            handleUser(user, vmf)
+            handleUser(user, favoriteViewModelFactory)
         } else {
             handleNoUser()
         }
     }
 
 
-    private fun handleUser(user: User, vmf: FavoriteViewModelFactory){
+    private fun handleUser(user: User, favoriteViewModelFactory: FavoriteViewModelFactory){
         binding.loginView.visibility = View.INVISIBLE
         binding.favoriteToLogin.visibility = View.INVISIBLE
         binding.favoriteToLoginButton.visibility = View.INVISIBLE
         binding.favoriteList.visibility = View.VISIBLE
 
-        favoriteViewModel = ViewModelProvider(this, vmf).get(FavoriteViewModel::class.java)
+        favoriteViewModel = ViewModelProvider(this, favoriteViewModelFactory)[FavoriteViewModel::class.java]
 
 
         val adapter = FavoriteAdapter(CoinListener { coin ->
@@ -83,9 +78,9 @@ class FavoriteFragment : Fragment() {
 
         binding.favoriteList.adapter = adapter
 
-        favoriteViewModel.getFavoriteCoins(user.id!!).observe(viewLifecycleOwner, Observer { favoriteCoins ->
+        favoriteViewModel.getFavoriteCoins(user.id!!).observe(viewLifecycleOwner) { favoriteCoins ->
             adapter.submitList(favoriteCoins)
-        })
+        }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
@@ -118,14 +113,15 @@ class FavoriteFragment : Fragment() {
             attachToRecyclerView(binding.favoriteList)
         }
 
-        favoriteViewModel.navigateToCoinDetail.observe(viewLifecycleOwner, Observer { coin ->
+        favoriteViewModel.navigateToCoinDetail.observe(viewLifecycleOwner) { coin ->
             coin?.let {
                 this.findNavController().navigate(
                     FavoriteFragmentDirections
-                        .actionFavoriteFragmentToCoinDetailFragment(coin))
+                        .actionFavoriteFragmentToCoinDetailFragment(coin)
+                )
                 favoriteViewModel.onCoinDetailNavigated()
             }
-        })
+        }
     }
 
     private fun handleNoUser() {

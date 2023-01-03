@@ -23,7 +23,7 @@ class RetrofitInstance {
             Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(MoshiConverterFactory.create(moshi)).client(client).build()
         }
 
-        val api by lazy {
+        val api: MessariApi by lazy {
             retrofit.create(MessariApi::class.java)
         }
     }

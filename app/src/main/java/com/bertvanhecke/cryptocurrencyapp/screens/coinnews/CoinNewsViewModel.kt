@@ -1,22 +1,15 @@
 package com.bertvanhecke.cryptocurrencyapp.screens.coinnews
 
 import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bertvanhecke.cryptocurrencyapp.constants.Constants
-import com.bertvanhecke.cryptocurrencyapp.models.CoinResponse
-import com.bertvanhecke.cryptocurrencyapp.models.News
 import com.bertvanhecke.cryptocurrencyapp.models.NewsResponse
-import com.bertvanhecke.cryptocurrencyapp.network.MessariApi
 import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
 import com.bertvanhecke.cryptocurrencyapp.utils.Resource
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import timber.log.Timber
-import java.lang.Exception
+
 
 class CoinNewsViewModel(val coinRepository: CoinRepository, symbol: String):ViewModel() {
 

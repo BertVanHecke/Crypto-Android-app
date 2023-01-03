@@ -7,7 +7,7 @@ import com.bertvanhecke.cryptocurrencyapp.models.User
 import com.bertvanhecke.cryptocurrencyapp.repository.UserRepository
 import kotlinx.coroutines.launch
 
-class LoginViewModel(val userRepository: UserRepository): ViewModel() {
+class LoginViewModel(private val userRepository: UserRepository): ViewModel() {
     var user = MutableLiveData<User?>()
     var loginError = MutableLiveData<String?>()
     var errorPassword = MutableLiveData<String?>()
@@ -16,7 +16,7 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
     var userName = MutableLiveData<String>()
     var password = MutableLiveData<String>()
 
-    var navigateBack = MutableLiveData<Boolean>()
+    private var navigateBack = MutableLiveData<Boolean>()
 
     init {
         navigateBack.value = false
@@ -26,12 +26,12 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
 
     fun btnLoginClicked() {
         if (userName.value.isNullOrBlank()) {
-            loginError.value = "Gebruikersnaam mag niet leeg zijn."
+            loginError.value = "Username can not be empty."
         } else {
             loginError.value = null
         }
         if (password.value.isNullOrBlank()) {
-            errorPassword.value = "Paswoord mag niet leeg zijn."
+            errorPassword.value = "Password can not be empty."
 
         } else  {
             errorPassword.value = null
@@ -50,7 +50,4 @@ class LoginViewModel(val userRepository: UserRepository): ViewModel() {
         }
     }
 
-    fun btnCancelClicked() {
-        navigateBack.value = true
-    }
 }

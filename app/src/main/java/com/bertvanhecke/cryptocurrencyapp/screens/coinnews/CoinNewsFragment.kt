@@ -8,20 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bertvanhecke.cryptocurrencyapp.R
-import com.bertvanhecke.cryptocurrencyapp.constants.Constants
-import com.bertvanhecke.cryptocurrencyapp.constants.Constants.Companion.BASE_IMAGE
 import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
-import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentCoinDetailBinding
 import com.bertvanhecke.cryptocurrencyapp.databinding.FragmentCoinNewsBinding
 import com.bertvanhecke.cryptocurrencyapp.models.News
 import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
-import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedViewModel
-import com.bertvanhecke.cryptocurrencyapp.screens.feed.FeedViewModelFactory
 import com.bertvanhecke.cryptocurrencyapp.utils.Resource
-import com.squareup.picasso.Picasso
 import timber.log.Timber
 
 class CoinNewsFragment : Fragment() {
@@ -32,7 +25,7 @@ class CoinNewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentCoinNewsBinding.inflate(inflater)
         val coinRepository = CoinRepository(CryptoDatabase(requireActivity()))
@@ -56,7 +49,7 @@ class CoinNewsFragment : Fragment() {
                 is Resource.Error -> {
                     binding.progressBarNews.visibility = View.GONE
                     response.message?.let { message ->
-                        Timber.i("An error occured: $message")
+                        Timber.i("An error occurred: $message")
                         (activity as AppCompatActivity).supportActionBar?.title = "Error, try again."
                     }
                 }

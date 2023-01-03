@@ -3,9 +3,7 @@ package com.bertvanhecke.cryptocurrencyapp.screens.feed
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,8 +13,6 @@ import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
 import com.bertvanhecke.cryptocurrencyapp.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import timber.log.Timber
-import java.lang.Exception
 
 
 class FeedViewModel(val coinRepository: CoinRepository): ViewModel() {

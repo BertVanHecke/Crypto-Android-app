@@ -2,10 +2,9 @@ package com.bertvanhecke.cryptocurrencyapp.screens.register
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bertvanhecke.cryptocurrencyapp.repository.CoinRepository
 import com.bertvanhecke.cryptocurrencyapp.repository.UserRepository
 
-class RegisterViewModelFactory(val userRepository: UserRepository) : ViewModelProvider.Factory {
+class RegisterViewModelFactory(private val userRepository: UserRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
             return RegisterViewModel(userRepository) as T

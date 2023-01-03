@@ -4,9 +4,9 @@ import com.bertvanhecke.cryptocurrencyapp.database.CryptoDatabase
 import com.bertvanhecke.cryptocurrencyapp.models.Coin
 import com.bertvanhecke.cryptocurrencyapp.network.RetrofitInstance
 
-class CoinRepository(val db: CryptoDatabase) {
+class CoinRepository(private val db: CryptoDatabase) {
 
-    suspend fun getAssets() = RetrofitInstance.api.getAsssets()
+    suspend fun getAssets() = RetrofitInstance.api.getAssets()
 
     suspend fun getAssetNews(symbol: String) = RetrofitInstance.api.getAssetNews(symbol)
 

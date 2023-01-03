@@ -1,6 +1,5 @@
 package com.bertvanhecke.cryptocurrencyapp.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.bertvanhecke.cryptocurrencyapp.models.User
 
