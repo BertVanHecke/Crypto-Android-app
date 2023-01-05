@@ -370,96 +370,97 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tableLayout4" />
 
-                    <TextView
-                        android:id="@+id/low"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="16dp"
-                        android:padding="5dp"
-                        android:text="low"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold|italic"
-                        app:layout_constraintEnd_toStartOf="@+id/close"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/high"
-                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
-                        app:low="@{coin}" />
-
-                    <TextView
-                        android:id="@+id/volume"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="252dp"
-                        android:layout_marginTop="16dp"
-                        android:padding="5dp"
-                        android:text="volume"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold|italic"
+                        android:fadingEdge="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/close"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
-                        app:volume="@{coin}" />
+                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV">
 
-                    <TextView
-                        android:id="@+id/high"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
-                        android:padding="5dp"
-                        android:text="high"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold|italic"
-                        app:high="@{coin}"
-                        app:layout_column="2"
-                        app:layout_constraintEnd_toStartOf="@+id/low"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/open"
-                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
-                        app:layout_row="0" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/open"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
-                        android:padding="5dp"
-                        android:text="open"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold|italic"
-                        app:layout_column="4"
-                        app:layout_constraintEnd_toStartOf="@+id/high"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV"
-                        app:layout_row="0"
-                        app:open="@{coin}" />
+                            <TextView
+                                android:id="@+id/volume"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                android:padding="5dp"
+                                android:text="volume"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toStartOf="@+id/open"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:volume="@{coin}" />
 
-                    <TextView
-                        android:id="@+id/close"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="16dp"
-                        android:padding="5dp"
-                        android:text="close"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold|italic"
-                        app:close="@{coin}"
-                        app:layout_constraintEnd_toStartOf="@+id/volume"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/low"
-                        app:layout_constraintTop_toBottomOf="@+id/title_OHLCV" />
+                            <TextView
+                                android:id="@+id/open"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                android:padding="5dp"
+                                android:text="open"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toStartOf="@+id/close"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/volume"
+                                app:open="@{coin}" />
+
+                            <TextView
+                                android:id="@+id/close"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                android:padding="5dp"
+                                android:text="close"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:close="@{coin}"
+                                app:layout_constraintEnd_toStartOf="@+id/high"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/open" />
+
+                            <TextView
+                                android:id="@+id/high"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                android:padding="5dp"
+                                android:text="high"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:high="@{coin}"
+                                app:layout_constraintEnd_toStartOf="@+id/low"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/close" />
+
+                            <TextView
+                                android:id="@+id/low"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="20dp"
+                                android:padding="5dp"
+                                android:text="low"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold|italic"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
+                                app:layout_constraintStart_toEndOf="@+id/high"
+                                app:low="@{coin}"
+                                tools:layout_editor_absoluteY="0dp" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </HorizontalScrollView>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
